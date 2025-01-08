@@ -1,0 +1,10 @@
+<div>
+    <h2>Lista de Serviços</h2>
+    <ul>
+      <li *ngFor="let servico of servicos">
+        Descrição: {{ servico.descricao }} - Linguagem: {{ servico.linguagem }} - Status: {{ servico.status }}
+        <button (click)="editServico(servico.id)">Editar</button>
+      </li>
+    </ul>
+  </div>
+  
