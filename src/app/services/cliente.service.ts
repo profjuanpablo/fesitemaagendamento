@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Cliente } from '../models/cliente.model';
-import { Servico } from '../models/servico.model'; // Certifique-se desta importação
+import { Cliente } from '../models/cliente.model';  // Certifique-se de importar o modelo correto
+import { Servico } from '../models/servico.model';  // Certifique-se de que este modelo está sendo utilizado se necessário
 
 @Injectable({
   providedIn: 'root'
@@ -20,5 +20,10 @@ export class ClienteService {
   // Método para buscar serviços de um cliente
   getServicosByClienteId(clienteId: number): Observable<Servico[]> {
     return this.http.get<Servico[]>(`${this.apiUrl}/${clienteId}/servicos`);
+  }
+
+  // Método para criar um novo cliente
+  createCliente(cliente: Cliente): Observable<Cliente> {
+    return this.http.post<Cliente>(this.apiUrl, cliente);
   }
 }

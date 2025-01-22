@@ -1,9 +1,15 @@
+<div class="container">
+<h2>Menu</h2>
+  <a class="btn btn-sm btn-success" [routerLink]="['/clientes']">Ir para Clientes</a> |
+  <a class="btn btn-sm btn-primary" [routerLink]="['/servicos']">Serviços</a> |
+  <a class="btn btn-sm btn-danger" [routerLink]="['/home']">Logout</a>
+
 <div class="clientes-lista">
   <h2>Lista de Clientes</h2>
   <ul>
     <li *ngFor="let cliente of clientes">
       <strong>{{ cliente.nome }}</strong> - {{ cliente.email }}
-      <button (click)="exibirServicos(cliente)">Ver Serviços</button>
+      <button class="btn btn-sm btn-outline-success" (click)="exibirServicos(cliente)">Ver Serviços</button>
     </li>
   </ul>
 </div>
@@ -20,4 +26,5 @@
 <!-- Exibição de mensagens de erro -->
 <div *ngIf="errorMessage" class="error-message">
   {{ errorMessage }}
+</div>
 </div>

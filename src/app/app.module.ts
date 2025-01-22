@@ -9,7 +9,9 @@ import { ServicosComponent } from './servicos/servicos.component';
 import { FormsModule } from '@angular/forms';
 import { FormEditarServicoComponent } from './form-editar-servico/form-editar-servico.component';
 import { ListServicoComponent } from './list-servico/list-servico.component';
-import { ReactiveFormsModule } from '@angular/forms';  // Importando o ReactiveFormsModule
+import { ReactiveFormsModule } from '@angular/forms';
+import { HomeComponent } from './home/home.component';  // Importando o ReactiveFormsModule
+import { ClienteService } from './services/cliente.service';  // Importação do ClienteService
 
 @NgModule({
   declarations: [
@@ -17,7 +19,8 @@ import { ReactiveFormsModule } from '@angular/forms';  // Importando o ReactiveF
     ClientesComponent,
     ServicosComponent,
     FormEditarServicoComponent,
-    ListServicoComponent
+    ListServicoComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +29,7 @@ import { ReactiveFormsModule } from '@angular/forms';  // Importando o ReactiveF
     FormsModule, 
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [ClienteService],  // Adicionando ClienteService nos providers
   bootstrap: [AppComponent]
 })
 export class AppModule { }

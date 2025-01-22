@@ -1,0 +1,64 @@
+<div class="container">
+<!-- home.component.html -->
+
+<div *ngIf="!isLoggedIn">
+  <!-- Formulário de login -->
+  <div *ngIf="!isLoginFormVisible">
+    <h2>Cadastro de Cliente</h2>
+    <form [formGroup]="clienteForm" (ngSubmit)="cadastrarCliente()">
+      <div>
+        <label for="nome">Nome:</label>
+        <input id="nome" formControlName="nome" />
+        <div *ngIf="clienteForm.get('nome')?.invalid && clienteForm.get('nome')?.touched">
+          <small class="error">Nome é obrigatório.</small>
+        </div>
+      </div>
+      <div>
+        <label for="email">Email:</label>
+        <input id="email" formControlName="email" />
+        <div *ngIf="clienteForm.get('email')?.invalid && clienteForm.get('email')?.touched">
+          <small class="error">Email é obrigatório e deve ser válido.</small>
+        </div>
+      </div>
+      <div>
+        <label for="telefone">Telefone:</label>
+        <input id="telefone" formControlName="telefone" />
+        <div *ngIf="clienteForm.get('telefone')?.invalid && clienteForm.get('telefone')?.touched">
+          <small class="error">Telefone é obrigatório e deve ter 10 ou 11 dígitos.</small>
+        </div>
+      </div>
+      <button type="submit" [disabled]="clienteForm.invalid">Cadastrar</button>
+    </form>
+    <br />
+    <button (click)="toggleLoginForm()">Já tem uma conta? Faça login</button>
+  </div>
+
+  <!-- Formulário de login -->
+  <div *ngIf="isLoginFormVisible">
+    <h2>Login</h2>
+    <form (ngSubmit)="onLogin()">
+      <div>
+        <label for="username">Usuário:</label>
+        <input type="text" id="username" [(ngModel)]="username" name="username" />
+      </div>
+      <div>
+        <label for="password">Senha:</label>
+        <input type="password" id="password" [(ngModel)]="password" name="password" />
+      </div>
+      <button type="submit">Entrar</button>
+      <br />
+      <button (click)="toggleLoginForm()">Voltar ao cadastro</button>
+    </form>
+    <div *ngIf="loginFailed">
+      <p style="color: red;">Usuário ou senha incorretos!</p>
+    </div>
+  </div>
+</div>
+
+<!-- Menu de navegação -->
+<div *ngIf="isLoggedIn">
+  <h2>Menu</h2>
+  <a [routerLink]="['/clientes']">Ir para Clientes</a> |
+  <a [routerLink]="['/servicos']">Serviços</a>
+</div>
+</div>
